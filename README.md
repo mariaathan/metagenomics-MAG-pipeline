@@ -17,7 +17,6 @@ Tools that need to be installed:
 - GTDB-Tk → MAG taxonomy
 - Prokka / eggNOG-mapper → MAG annotation
 
-Each tool should be installed following its own documentation and added to your system $PATH.
 # Step 1: Data acquisition
 Download public datasets from NCBI SRA using the SRA Toolkit. The SRA Toolkit must be first installed on your system. Then use this command to download the data:
 ```
