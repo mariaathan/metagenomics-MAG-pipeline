@@ -15,7 +15,7 @@ Tools that need to be installed:
 - MetaBAT2 → Binning
 - CheckM2 → MAG quality assessment
 - GTDB-Tk → MAG taxonomy
-- Prokka → MAG annotation
+- Prokka / eggNOG-mapper → MAG annotation
 Each tool should be installed following its own documentation and added to your system $PATH.
 # Step 1: Data acquisition
 Download public datasets from NCBI SRA using the SRA Toolkit. The SRA Toolkit must be first installed on your system. Then use this command to download the data:
@@ -146,4 +146,16 @@ gtdbtk classify_wf \
     --extension fa \
     --cpus 16
 ```
-# Step 8: Functional annotation
+# Step 8: Annotation
+Annotate each MAG using Prokka which scans the MAG contigs and identifies genes and functional elements that are present. 
+```
+# example command
+prokka --outdir prokka_output --prefix sample metaspades_output/contigs.fasta
+```
+For each MAG Prokka generates several output files. The *.faa file contains the predicted protein sequences in FASTA format.
+Another tool that can be used for functional annotation is eggNOG-mapper. This tool can takes the proteins predicted by Prokka and compares them against the eggNOG database.
+```
+# example command
+emapper.py -i prokka_output/sample.faa -o eggnog_output
+```
+eggNOG-mapper assigns each protein to functional categories and provides information about relevant COG, KEGG and GO terms.
