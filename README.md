@@ -193,3 +193,6 @@ for faa in prokka_output/*/*.faa; do
 done
 ```
 eggNOG-mapper assigns each protein to functional categories and provides information about relevant COG, KEGG and GO terms.
+# Extra steps - Further analysis
+- Comparative metagenomics
+- Machine learning in metagenomics
