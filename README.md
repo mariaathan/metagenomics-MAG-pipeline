@@ -177,7 +177,7 @@ for mag in filtered_mags/*.fa; do
 done
 ```
 For each MAG Prokka generates several output files. The *.faa file contains the predicted protein sequences in FASTA format.
-Another tool that can be used for functional annotation is eggNOG-mapper. This tool can takes the proteins predicted by Prokka and compares them against the eggNOG database.
+Another tool that can be used for functional annotation is eggNOG-mapper. This tool can take the proteins predicted by Prokka and compares them against the eggNOG database.
 ```
 # example command
 mkdir -p eggnog_output
