@@ -55,12 +55,7 @@ fastqc sample_forward_paired.fastq.gz sample_reverse_paired.fastq.gz -o fastqc_t
 ```
 ### Taxonomic profiling
 Taxonomic profile provides an overview of the organisms that are present in the sample. It also works as a quality check that verifies that the sample looks as expected.
-#### Option A: Galaxy
-1. Visit https://usegalaxy.eu 
-2. Upload the trimmed reads (sample_forward_paired.fastq.gz, sample_reverse_paired.fastq.gz)
-3. Run Kraken2 with the paired reads
-4. Visualize the Kraken2 report with Krona
-#### Option B: Command line
+
 ```
 # To run kraken2 the Kraken2 database must by downloaded first (Memory required: ~50GB)
 kraken2-build --standard --db kraken2_db --threads 16
@@ -117,6 +112,7 @@ MetaBAT2 clusters the contigs into bins based on tetranucleotide frequency and c
 mkdir -p metabat2_bins
 
 metabat2 -i metaspades_output/contigs.fasta \
+         -a sample_depth.txt \
          -o metabat2_bins/bin \
          -m 1500 --unbinned \
          --saveCls metabat2_bins/bin.cls.tsv 
@@ -146,12 +142,7 @@ awk -F'\t' 'NR>1 {print $1}' filtered_mags.tsv | xargs -I{} cp metabat2_bins/{}.
 ```
 ## Step 7: Taxonomic Classification of MAGs
 Assign taxonomy to filtered MAGs using GTDB-Tk.
-### Option A: Galaxy
-1. Visit https://usegalaxy.eu
-2. Upload the filtered MAG bins (.fa files)
-3. Run GTDB-Tk on the MAG bins
-4. Download the results summary table
-### Option B: Command line 
+
 ```
 # Download the GTDB reference database (Memory required: ~60GB)
 download-db.sh
